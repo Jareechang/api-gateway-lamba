@@ -1,4 +1,7 @@
 exports.handler = async function (event, context, callback) {
+    const queryString = event["queryStringParameters"];
+
+    console.log('QueryString: ', JSON.stringify(queryString));
     var response = {
         statusCode: 200,
         headers: {

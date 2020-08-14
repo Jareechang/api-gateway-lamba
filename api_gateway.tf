@@ -13,6 +13,11 @@ resource "aws_api_gateway_method" "get_method" {
     resource_id   = aws_api_gateway_resource.api_resource.id
     http_method   = "ANY"
     authorization = "NONE"
+
+    request_parameters = {
+        "method.request.querystring.accountId" = true
+        "method.request.querystring.token" = true
+    }
 }
 
 

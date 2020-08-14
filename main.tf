@@ -12,7 +12,7 @@ locals {
 }
 
 resource "aws_s3_bucket" "lambda" {
-    bucket = "lambda-artifact-dev03"
+    bucket = "lambda-artifact-dev04"
     acl    = "private"
     tags = {
         Name        = "Dev"
