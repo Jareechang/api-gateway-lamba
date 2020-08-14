@@ -8,6 +8,7 @@
 # - CW logs permissions
 
 data "aws_iam_policy_document" "lambda_assume_role_policy" {
+    version = "2012-10-17"
     statement {
         actions = [
             "sts:AssumeRole",
@@ -46,11 +47,11 @@ resource "aws_iam_role" "lambda_role" {
     assume_role_policy = data.aws_iam_policy_document.lambda_assume_role_policy.json
 }
 
-#resource "aws_iam_policy_attachment" "attach_policy_to_role_lambda" {
-    #name       = "lambda-role-attachment"
-    #roles      = [aws_iam_role.lambda_role.name]
-    #policy_arn = aws_iam_policy.api_lambda_policy.arn
-#}
+resource "aws_iam_policy_attachment" "attach_policy_to_role_lambda" {
+    name       = "lambda-role-attachment"
+    roles      = [aws_iam_role.lambda_role.name]
+    policy_arn = aws_iam_policy.api_lambda_policy.arn
+}
 
 resource "aws_lambda_permission" "apigw_lambda" {
   statement_id  = "AllowExecutionFromAPIGateway"
