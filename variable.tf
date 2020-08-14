@@ -6,8 +6,6 @@ variable "env" {
     default = "dev"
 }
 
-variable "accountId" {}
-
 variable "lambda_name" {
     default = "api-gateway-function"
 }
