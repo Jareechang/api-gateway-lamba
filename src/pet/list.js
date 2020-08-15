@@ -16,18 +16,13 @@ exports.handler = async function (event, context, callback) {
             "price": 0.99 
         } 
     ];
-    const { petId } = event["pathParameters"] || '';
-
-    const results = pets.filter((pet) => {
-        return pet.id === +petId;
-    });
 
     var response = {
         statusCode: 200,
         headers: {
             'Content-Type': 'application/json;',
         },
-        body: JSON.stringify(results),
+        body: JSON.stringify(pets),
     }
     callback(null, response)
 }
