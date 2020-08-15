@@ -55,7 +55,7 @@ resource "aws_iam_policy_attachment" "attach_policy_to_role_lambda" {
 
 ## Allow API gateway invoke
 resource "aws_lambda_permission" "list_pet_lambda" {
-  statement_id  = "AllowExecutionFromAPIGateway"
+  statement_id  = "AllowExecutionFromAPIGatewayListPet"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.list_pets.function_name
   principal     = "apigateway.amazonaws.com"
@@ -64,7 +64,7 @@ resource "aws_lambda_permission" "list_pet_lambda" {
 }
 
 resource "aws_lambda_permission" "single_pet_lambda" {
-  statement_id  = "AllowExecutionFromAPIGateway"
+  statement_id  = "AllowExecutionFromAPIGatewaySinglePet"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.get_pet.function_name
   principal     = "apigateway.amazonaws.com"

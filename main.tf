@@ -12,7 +12,7 @@ locals {
 }
 
 resource "aws_s3_bucket" "lambda" {
-    bucket = "lambda-artifact-dev04"
+    bucket = "lambda-artifact-dev05"
     acl    = "private"
     tags = {
         Name        = "Dev"
@@ -27,7 +27,7 @@ resource "aws_s3_bucket_object" "lambda" {
 }
 
 resource "aws_lambda_function" "list_pets" {
-    function_name = "${var.lambda_name}-${var.env}"
+    function_name = "${var.lambda_name}-${var.env}-list-pets"
     s3_bucket = "${aws_s3_bucket.lambda.id}"
     s3_key = "${aws_s3_bucket_object.lambda.id}"
     handler = "src/pet-list/index.handler"
@@ -41,7 +41,7 @@ resource "aws_lambda_function" "list_pets" {
 }
 
 resource "aws_lambda_function" "get_pet" {
-    function_name = "${var.lambda_name}-${var.env}"
+    function_name = "${var.lambda_name}-${var.env}-get-pet"
     s3_bucket = "${aws_s3_bucket.lambda.id}"
     s3_key = "${aws_s3_bucket_object.lambda.id}"
     handler = "src/pet/index.handler"
