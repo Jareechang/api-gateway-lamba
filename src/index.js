@@ -25,7 +25,7 @@ exports.handler = async function (event, context, callback) {
         headers: {
             'Content-Type': 'application/json;',
         },
-        body: pets,
+        body: JSON.stringify(pets),
     }
     callback(null, response)
 }
