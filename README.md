@@ -10,6 +10,14 @@ Terraform setup of API gateway with Lambda running on Node.js.
 - Lambda S3 store 
 - Terraform (>= v0.12.24)
 
+**Folder structure:**  
+
+pet/
+├── create.js - create new pet
+├── get.js    - get pet by id
+└── list.js   - list pets
+
+
 ### Sections
 
 1. [Quick Start](#quick-start)  
