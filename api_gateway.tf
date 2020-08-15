@@ -15,7 +15,6 @@ resource "aws_api_gateway_method" "list" {
     authorization = "NONE"
 }
 
-
 resource "aws_api_gateway_integration" "list" {
     rest_api_id             = aws_api_gateway_rest_api.api.id
     resource_id             = aws_api_gateway_resource.list.id
@@ -52,10 +51,36 @@ resource "aws_api_gateway_integration" "single" {
     uri                     = aws_lambda_function.get_pet.invoke_arn
 }
 
+resource "aws_api_gateway_method" "create" {
+    rest_api_id   = aws_api_gateway_rest_api.api.id
+    resource_id   = aws_api_gateway_resource.list.id
+    http_method   = "POST"
+    authorization = "NONE"
+}
+
+
+resource "aws_api_gateway_integration" "create" {
+    rest_api_id             = aws_api_gateway_rest_api.api.id
+    resource_id             = aws_api_gateway_resource.list.id
+    http_method             = aws_api_gateway_method.create.http_method
+    integration_http_method = "POST"
+    type                    = "AWS_PROXY"
+    uri                     = aws_lambda_function.create_pet.invoke_arn
+    request_templates = {
+        "application/json" =  <<REQUEST_TEMPLATE
+        {
+            "body" : $input.json('$'),
+            "stage" : "$context.stage"
+        }
+        REQUEST_TEMPLATE
+    }
+}
+
 resource "aws_api_gateway_deployment" "api_deployment" {
     depends_on = [
         aws_api_gateway_integration.list,
         aws_api_gateway_integration.single,
+        aws_api_gateway_integration.create,
     ]
     rest_api_id = aws_api_gateway_rest_api.api.id
     stage_name  = "stage" 

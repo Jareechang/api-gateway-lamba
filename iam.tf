@@ -72,3 +72,11 @@ resource "aws_lambda_permission" "single_pet_lambda" {
   source_arn    = "${aws_api_gateway_rest_api.api.execution_arn}/*/*/*"
 }
     
+resource "aws_lambda_permission" "create_pet_lambda" {
+  statement_id  = "AllowExecutionFromAPIGatewayCreatePet"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.create_pet.function_name
+  principal     = "apigateway.amazonaws.com"
+
+  source_arn    = "${aws_api_gateway_rest_api.api.execution_arn}/*/*/*"
+}

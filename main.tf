@@ -54,6 +54,20 @@ resource "aws_lambda_function" "get_pet" {
     ]
 }
 
+resource "aws_lambda_function" "create_pet" {
+    function_name = "${var.lambda_name}-${var.env}-create-pet"
+    s3_bucket = "${aws_s3_bucket.lambda.id}"
+    s3_key = "${aws_s3_bucket_object.lambda.id}"
+    handler = "src/pet/create.handler"
+    role = "${aws_iam_role.lambda_role.arn}"
+    timeout = var.lambda_timeout 
+    source_code_hash = "${filebase64sha256("dist/${aws_s3_bucket_object.lambda.id}.zip")}"
+    runtime = "nodejs12.x"
+    depends_on = [
+        aws_cloudwatch_log_group.lambda_logs
+    ]
+}
+
 resource "aws_cloudwatch_log_group" "lambda_logs" {
     name = "/aws/lambda/${var.lambda_name}-${var.env}"
     retention_in_days = 14
