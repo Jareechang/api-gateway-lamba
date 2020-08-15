@@ -15,6 +15,9 @@ Terraform setup of API gateway with Lambda running on Node.js.
 1. [Quick Start](#quick-start)  
 2. [Lambda Versioning](#lambda-versioning)  
 3. [Testing The API](#testing-the-api)  
+- GET `/pets` [List Pets](#list-pets)  
+- GET `/pet/:id` [Get pet by ID](#get-pet-by-id)  
+- POST `/pets` [Create new pet](#create-pet)  
 
 ### Quick Start
 
