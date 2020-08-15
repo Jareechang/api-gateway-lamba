@@ -16,18 +16,18 @@ exports.handler = async function (event, context, callback) {
             "price": 0.99 
         } 
     ];
-    const queryString = event["queryStringParameters"];
-    const pathParams = event["pathParameters"];
+    const { petId } = event["pathParameters"] || '';
 
-    console.log('QueryString: ', JSON.stringify(queryString));
-    console.log('Path Params: ', JSON.stringify(pathParams));
+    console.log('Receieved Pet ID: ', petId);
+
+    const results = pets.filter(d => d.id === petId);
 
     var response = {
         statusCode: 200,
         headers: {
             'Content-Type': 'application/json;',
         },
-        body: JSON.stringify(pets),
+        body: JSON.stringify(results),
     }
     callback(null, response)
 }
