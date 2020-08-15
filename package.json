@@ -1,6 +1,6 @@
 {
   "name": "api-gateway-lambda",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "main": "index.js",
   "author": "Jerry Chang <therealjerrycan@gmail.com>",
   "license": "MIT",
