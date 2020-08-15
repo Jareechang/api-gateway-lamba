@@ -18,7 +18,7 @@ exports.handler = async function (event, context, callback) {
     ];
     const { petId } = event["pathParameters"];
     const results = pets.filter((pet) => {
-        return pet.id === petID; 
+        return pet.id === petId; 
     });
 
     var response = {
