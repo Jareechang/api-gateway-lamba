@@ -17,8 +17,10 @@ exports.handler = async function (event, context, callback) {
         } 
     ];
     const queryString = event["queryStringParameters"];
+    const pathParams = event["pathParameters"];
 
     console.log('QueryString: ', JSON.stringify(queryString));
+    console.log('Path Params: ', JSON.stringify(pathParams));
 
     var response = {
         statusCode: 200,
