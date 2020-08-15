@@ -16,7 +16,7 @@ exports.handler = async function (event, context, callback) {
             "price": 0.99 
         } 
     ];
-    const { petId } = event["queryStringParameters"];
+    const { petId } = event["pathParameters"];
     const results = pets.filter((pet) => {
         return pet.id === petID; 
     });
