@@ -141,7 +141,6 @@ curl -X GET "<output-api-gateway-invoke-url>/pets/1"
 
 ```
 curl -X POST "<output-api-gateway-invoke-url>/stage/pets" \
-
 --data-raw '{
     "pet": {
         "id": {
