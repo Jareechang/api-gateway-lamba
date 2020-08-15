@@ -14,6 +14,7 @@ Terraform setup of API gateway with Lambda running on Node.js.
 
 1. [Quick Start](#quick-start)  
 2. [Lambda Versioning](#lambda-versioning)  
+3. [Testing The API](#testing-the-api)  
 
 ### Quick Start
 
@@ -30,16 +31,16 @@ export AWS_DEFAULT_REGION=us-east-1
 
 2. Create Infrastructure  
 
-**Important:** Note down the `queue-url` of the sqs queue to be used later
-
 ```sh
-# The IP address is important for instance access (This is important if you want to test with instance)
 terraform init
 terraform plan
 terraform apply -auto-approve 
+
+# init the dist files for lambda
+yarn run version:patch
 ```
 
-3. Visit Console and trigger lambda   
+3. See Instructions below for testing the api.
 
 
 ### Lambda Versioning 
@@ -64,4 +65,61 @@ yarn run version:major
 ```
 terraform plan
 terraform apply -auto-approve 
+```
+
+### Testing The API
+
+
+##### List Pets 
+
+**Request:**  
+```sh
+curl -X GET "<output-api-gateway-invoke-url>/pets"
+```
+
+**Response:**  
+```sh
+[
+    {
+        "id": 1,
+        "price": 249.99,
+        "type": "dog"
+    },
+    {
+        "id": 2,
+        "price": 124.99,
+        "type": "cat"
+    },
+    {
+        "id": 3,
+        "price": 0.99,
+        "type": "fish"
+    }
+]
+
+```
+
+##### get pet by ID:
+
+**Request:**    
+
+```
+curl -X GET "<output-api-gateway-invoke-url>/pets/:petId"
+
+```
+
+**Response:**  
+
+```sh
+
+curl -X GET "<output-api-gateway-invoke-url>/pets/1"
+
+[
+    {
+        "id": 1,
+        "price": 249.99,
+        "type": "dog"
+    }
+]
+
 ```
