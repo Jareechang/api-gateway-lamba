@@ -18,8 +18,10 @@ exports.handler = async function (event, context, callback) {
     ];
     const { petId } = event["pathParameters"];
     const results = pets.filter((pet) => {
-        return pet.id === petId; 
+        return pet.id === +petId; 
     });
+
+    console.log('Result: ', JSON.stringify(results));
 
     var response = {
         statusCode: 200,
