@@ -18,15 +18,9 @@ exports.handler = async function (event, context, callback) {
     ];
     const { petId } = event["pathParameters"] || '';
 
-    console.log('Receieved Pet ID: ', petId);
-
     const results = pets.filter((pet) => {
-        console.log('id: ', pet.id);
-        console.log('petId: ', petId);
-        console.log('filtering: ', JSON.stringify(pet));
         return pet.id === +petId;
     });
-
 
     var response = {
         statusCode: 200,
