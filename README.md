@@ -70,7 +70,7 @@ terraform apply -auto-approve
 ### Testing The API
 
 
-##### List Pets 
+#### List Pets 
 
 **Request:**  
 ```sh
@@ -99,7 +99,7 @@ curl -X GET "<output-api-gateway-invoke-url>/pets"
 
 ```
 
-##### get pet by ID:
+#### Get pet by ID:
 
 **Request:**    
 
@@ -120,6 +120,57 @@ curl -X GET "<output-api-gateway-invoke-url>/pets/1"
         "price": 249.99,
         "type": "dog"
     }
+]
+
+```
+
+#### Create pet:
+
+**Note:** All the data is in memory so there will be no persistence between lambda requests (ie. creating this endpoint will not update the list `pets` endpoint)
+
+**Request:**    
+
+```
+
+curl -X POST "<output-api-gateway-invoke-url>/stage/pets" \
+--data-raw '{
+    "pet": {
+        "id": {
+            "id": 4,
+            "type": "Snake",
+            "price": 399.99
+        }
+    }
+}'
+
+```
+
+**Response:**  
+
+```sh
+[
+  {
+    "id": 1,
+    "type": "dog",
+    "price": 249.99
+  },
+  {
+    "id": 2,
+    "type": "cat",
+    "price": 124.99
+  },
+  {
+    "id": 3,
+    "type": "fish",
+    "price": 0.99
+  },
+  {
+    "id": {
+      "id": 4,
+      "type": "Snake",
+      "price": 399.99
+    }
+  }
 ]
 
 ```
