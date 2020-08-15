@@ -12,11 +12,12 @@ Terraform setup of API gateway with Lambda running on Node.js.
 
 **Folder structure:**  
 
+```sh
 pet/
 ├── create.js - create new pet
 ├── get.js    - get pet by id
 └── list.js   - list pets
-
+```
 
 ### Sections
 
@@ -107,7 +108,6 @@ curl -X GET "<output-api-gateway-invoke-url>/pets"
         "type": "fish"
     }
 ]
-
 ```
 
 #### Get pet by ID:
@@ -122,7 +122,6 @@ curl -X GET "<output-api-gateway-invoke-url>/pets/:petId"
 **Response:**  
 
 ```sh
-
 curl -X GET "<output-api-gateway-invoke-url>/pets/1"
 
 [
@@ -132,7 +131,6 @@ curl -X GET "<output-api-gateway-invoke-url>/pets/1"
         "type": "dog"
     }
 ]
-
 ```
 
 #### Create pet:
@@ -142,8 +140,8 @@ curl -X GET "<output-api-gateway-invoke-url>/pets/1"
 **Request:**    
 
 ```
-
 curl -X POST "<output-api-gateway-invoke-url>/stage/pets" \
+
 --data-raw '{
     "pet": {
         "id": {
@@ -153,7 +151,6 @@ curl -X POST "<output-api-gateway-invoke-url>/stage/pets" \
         }
     }
 }'
-
 ```
 
 **Response:**  
@@ -183,5 +180,4 @@ curl -X POST "<output-api-gateway-invoke-url>/stage/pets" \
     }
   }
 ]
-
 ```
