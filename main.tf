@@ -30,7 +30,7 @@ resource "aws_lambda_function" "list_pets" {
     function_name = "${var.lambda_name}-${var.env}"
     s3_bucket = "${aws_s3_bucket.lambda.id}"
     s3_key = "${aws_s3_bucket_object.lambda.id}"
-    handler = "src/index.handler"
+    handler = "src/pet-list/index.handler"
     role = "${aws_iam_role.lambda_role.arn}"
     timeout = var.lambda_timeout 
     source_code_hash = "${filebase64sha256("dist/${aws_s3_bucket_object.lambda.id}.zip")}"
@@ -44,7 +44,7 @@ resource "aws_lambda_function" "get_pet" {
     function_name = "${var.lambda_name}-${var.env}"
     s3_bucket = "${aws_s3_bucket.lambda.id}"
     s3_key = "${aws_s3_bucket_object.lambda.id}"
-    handler = "src/pet.handler"
+    handler = "src/pet/index.handler"
     role = "${aws_iam_role.lambda_role.arn}"
     timeout = var.lambda_timeout 
     source_code_hash = "${filebase64sha256("dist/${aws_s3_bucket_object.lambda.id}.zip")}"
