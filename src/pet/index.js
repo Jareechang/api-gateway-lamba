@@ -20,7 +20,7 @@ exports.handler = async function (event, context, callback) {
 
     console.log('Receieved Pet ID: ', petId);
 
-    const results = pets.filter(d => d.id === petId);
+    const results = pets.filter(d => d.id === +petId);
 
     var response = {
         statusCode: 200,
